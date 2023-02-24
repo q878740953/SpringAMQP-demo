@@ -3,3 +3,6 @@ spring:
     host: 192.168.1.17
     username: admin
     password: zxcvbnm1234
+    listener:
+      simple:
+        prefetch: 1 # 每次只取1一个，处理完成ACK之后，才去获取下一个消息，多劳多得
