@@ -14,11 +14,11 @@ public class TestSendMessageController {
     @Autowired
     private RabbitTemplate rabbitTemplate;
 
-    private final String QUEUE_NAME = "simple.queue";
+    private final static String QUEUE_NAME = "simple.queue";
 
     @GetMapping("/simplequeue")
     public String testSendMessageSimpleQueue(String messages){
-        for (int i = 0; i < 1000; i++) {
+        for (int i = 0; i < 50; i++) {
             // 发送消息
             rabbitTemplate.convertAndSend(QUEUE_NAME, messages + i);
         }
