@@ -24,4 +24,14 @@ public class TestSendMessageController {
         }
         return "ok";
     }
+
+
+    @GetMapping("/fanout")
+    public String testSendMessageByFanout(String messages){
+        // 申明交换机名称
+        String fanoutExchange = "test.fanout";
+        // 像交换机中 发送消息
+        rabbitTemplate.convertAndSend(fanoutExchange, "", messages);
+        return "ok";
+    }
 }

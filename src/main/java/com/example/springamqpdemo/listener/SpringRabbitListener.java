@@ -19,4 +19,17 @@ public class SpringRabbitListener {
         System.err.println("消费者2接收到的消息：【" + msg + "】");
         Thread.sleep(200);
     }
+
+
+    @RabbitListener(queues = "fanout.queue1") // 声明式队列，mq中没有该队列时，自动创建
+    public void ListenFanoutQueue1(String msg) throws InterruptedException {
+        System.out.println("Fanout消费者1接收到的消息：【" + msg + "】");
+        Thread.sleep(200);
+    }
+
+    @RabbitListener(queues = "fanout.queue2") // 声明式队列，mq中没有该队列时，自动创建
+    public void ListenFanoutQueue2(String msg) throws InterruptedException {
+        System.err.println("Fanout消费者2接收到的消息：【" + msg + "】");
+        Thread.sleep(200);
+    }
 }
