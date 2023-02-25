@@ -34,4 +34,14 @@ public class TestSendMessageController {
         rabbitTemplate.convertAndSend(fanoutExchange, "", messages);
         return "ok";
     }
+
+
+    @GetMapping("/direct")
+    public String testSendMessageByDirect(String messages, String key){
+        // 申明交换机名称
+        String fanoutExchange = "test.direct";
+        // 像交换机中 发送消息
+        rabbitTemplate.convertAndSend(fanoutExchange, key, messages);
+        return "ok";
+    }
 }
