@@ -63,4 +63,15 @@ public class SpringRabbitListener {
         System.err.println("Direct消费者2接收到的消息：【" + msg + "】");
         Thread.sleep(200);
     }
+
+
+    @RabbitListener(bindings = @QueueBinding(
+            value = @Queue("direct.queue2"),
+            exchange = @Exchange(value = "amq.topic", type = ExchangeTypes.TOPIC),
+            key = {"test.*"}
+    )) // 声明式队列，mq中没有该队列时，自动创建
+    public void ListenTopicQueue(String msg) throws InterruptedException {
+        System.err.println("Topic消费者接收到的消息：【" + msg + "】");
+        Thread.sleep(200);
+    }
 }
